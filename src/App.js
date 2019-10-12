@@ -55,6 +55,18 @@ export default function CustomizedInputs() {
       setResulf(quickSort(arrNumber, 0, arr.length - 1))
     }
   }
+
+  /**
+   * Handel modal Example Code
+   */
+  const [openModalExampleCode, setOpenModalExampleCode] = React.useState(false);
+  const handleOpen = () => {
+    setOpenModalExampleCode(true);
+  };
+
+  const handleClose = () => {
+    setOpenModalExampleCode(false);
+  };
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -103,9 +115,23 @@ export default function CustomizedInputs() {
         </Grid>
       </Grid>
       <Grid container>
-      <Button variant="contained" color="primary" className={classes.button} id="example-code-btn">
+      <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode}> id="example-code-btn">
         Example code
       </Button>
+      <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={openModalExampleCode}
+          onClose={handleCloseModalExampleCode}
+        >
+          <div>
+            <h2 id="simple-modal-title">Text in a modal</h2>
+            <p id="simple-modal-description">
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </p>
+            <SimpleModal />
+          </div>
+        </Modal>
       </Grid>
     </div>
   );
