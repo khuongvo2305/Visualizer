@@ -17,3 +17,10 @@ code {
   right: -60px;
   transform: rotate(90deg);
 }
+.contentModalExampleCode {
+  margin: 30px;
+  padding: 10px;
+  background-color: #fff;
+  height: 80%;
+  border-radius: 5px;
+}
