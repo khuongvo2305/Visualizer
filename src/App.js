@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-
+import { quickSort } from "./quickSort";
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
@@ -33,6 +33,7 @@ export default function CustomizedInputs() {
   const classes = useStyles();
   const [size, setSize] = useState(0);
   const [arr, setArr] = useState()
+  const [resulf, setResulf] = useState()
   const handleClick = () => {
     let min = -1000;
     let max = 1000;
@@ -48,12 +49,32 @@ export default function CustomizedInputs() {
   const onChange = e => {
     setSize(e.target.value)
   }
+  const handleSort = () => {
+    if(arr && arr.length > 0){
+      let arrNumber = [...arr];
+      setResulf(quickSort(arrNumber, 0, arr.length - 1))
+    }
+  }
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           {
-            arr && arr.map(number => number + ' | ')
+            arr &&
+            <React.Fragment>
+              <label>Array:</label><br/>
+              {arr.map(number => number + ' | ')}
+            </React.Fragment>
+          }
+        </Grid>
+        <Grid item xs={12}>
+          {
+
+            resulf &&
+              <React.Fragment>
+                <label>Resulf:</label><br/>
+                {resulf.map(number => number + ' | ')}
+              </React.Fragment>
           }
         </Grid>
         <Grid item xs={12}>
@@ -74,7 +95,7 @@ export default function CustomizedInputs() {
               <Button variant="contained" onClick={handleClick} color="primary" className={classes.button}>
                 Random Array
               </Button>
-              <Button variant="contained" color="primary" className={classes.button}>
+              <Button variant="contained" onClick={handleSort} color="primary" className={classes.button}>
                 Sort
               </Button>
             </form>
