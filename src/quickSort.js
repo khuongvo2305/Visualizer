@@ -5,7 +5,7 @@ function swap(left, right) {
 }
 
 function partition(items, left, right) {
-  var i = start + 1;
+  var i = left + 1;
   var pivot = items[Math.floor(left)];
   for(let j = left + 1; j <= right; j++){
     if(items[j] < pivot){
