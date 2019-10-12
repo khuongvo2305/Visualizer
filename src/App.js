@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
 import { quickSort } from "./quickSort";
 const useStyles = makeStyles(theme => ({
@@ -60,11 +61,11 @@ export default function CustomizedInputs() {
    * Handel modal Example Code
    */
   const [openModalExampleCode, setOpenModalExampleCode] = React.useState(false);
-  const handleOpen = () => {
+  const handleOpenModalExampleCode = () => {
     setOpenModalExampleCode(true);
   };
 
-  const handleClose = () => {
+  const handleCloseModalExampleCode = () => {
     setOpenModalExampleCode(false);
   };
   return (
@@ -115,7 +116,7 @@ export default function CustomizedInputs() {
         </Grid>
       </Grid>
       <Grid container>
-      <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode}> id="example-code-btn">
+      <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode} id="example-code-btn">
         Example code
       </Button>
       <Modal
@@ -129,7 +130,6 @@ export default function CustomizedInputs() {
             <p id="simple-modal-description">
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </p>
-            <SimpleModal />
           </div>
         </Modal>
       </Grid>
