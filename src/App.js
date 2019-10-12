@@ -34,8 +34,13 @@ export default function CustomizedInputs() {
   const [size, setSize] = useState(0);
   const [arr, setArr] = useState()
   const handleClick = () => {
+    let min = -1000;
+    let max = 1000;
+    
+
+
     if(size > 0){
-      setArr(Array.from({length: size}, () => Math.floor(Math.random() * size)))
+      setArr(Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min)))))
     } else {
       alert("Please select size!")
     }
