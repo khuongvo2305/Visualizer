@@ -255,9 +255,6 @@ export default function CustomizedInputs() {
 
                 <li> Pivot element</li>
                 </ul>
-                <code>
-                 
-                </code>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={1}>
               Example Code C++
