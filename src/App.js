@@ -140,11 +140,11 @@ export default function CustomizedInputs() {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <form noValidate autoComplete="off">
-              <TextField 
+              <TextField
                 id="standard-number"
                 label="Size"
                 type="number"
-                
+
                 className={classes.textField}
                 InputLabelProps={{
                   shrink: true,
@@ -164,26 +164,26 @@ export default function CustomizedInputs() {
         </Grid>
       </Grid>
       <Grid item xs={12} style = {{height:"30%"}}>
-        <ExpansionPanel style={{width:"30%", marginLeft: 20, marginTop: 20}}>
+        <ExpansionPanel style={{width:"50%", marginLeft: 20, marginTop: 20}}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            
+
             <Typography className={classes.heading}>Pseudocode</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>
+            <div>
               <b>quickSort(arr[], low, high):</b>
                 <p>{"\u00a0 \u00a0 if (low < high):"}</p>
                 <p>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
                 <p>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
                 <p>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
-            </Typography>
+            </div>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-      </Grid> 
+      </Grid>
       <Grid container>
 
         <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode} id="example-code-btn">
@@ -202,7 +202,7 @@ export default function CustomizedInputs() {
               </p>
             </div>
           </Modal>
-       
+
 
       <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode} id="example-code-btn">
         Example code
