@@ -179,7 +179,38 @@ export default function CustomizedInputs() {
                 </Tabs>
               </AppBar>
               <TabPanel value={valueTabExampleCode} index={0}>
-                Quick Sort
+                <p><b>Quick sort</b> is based on the divide-and-conquer approach based on the idea of choosing one element as a pivot element and partitioning the array around the picked pivot. There are many different versions of quickSort that pick pivot in different ways:</p>
+                <p>- Always pick first element as pivot.</p>
+
+                <p>- Always pick last element as pivot.</p>
+
+                <p>- Pick random element as pivot.</p>
+
+                <p>- Pick median as pivot.</p>
+
+                <p>Now, we discuss about pick first element as pivot, it such that: Left side of pivot contains all the elements that are less than the pivot element Right side contains all elements greater than the pivot.</p>
+
+                <p>It reduces the space complexity and removes the use of the auxiliary array that is used in merge sort. Selecting a random pivot in an array results in an improved time complexity in most of the cases.</p>
+
+                <p>Implementation :</p>
+
+                <p>Select the first element of array as the pivot element First, we will see how the partition of the array takes place around the pivot.</p>
+                <p>In the implementation below, the following components have been used: Here, array whose elements are to be sorted</p>
+
+                <ul>
+                <li>Leftmost position of the array</li>
+
+                <li>Rightmost position of the array</li>
+
+                <li> Boundary between the elements that are less than pivot and those greater than pivot</li>
+
+                <li>Boundary between the partitioned and unpartitioned part of array</li>
+
+                <li> Pivot element</li>
+                </ul>
+                <code>
+                 
+                </code>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={1}>
               Example Code C++
