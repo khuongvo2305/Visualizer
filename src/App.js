@@ -5,13 +5,22 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
+
 import { quickSort } from "./quickSort";
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
@@ -73,13 +82,10 @@ export default function CustomizedInputs() {
   const handleClick = () => {
     let min = -1000;
     let max = 1000;
-    
-
-
     if(size > 0){
       setArr(Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min)))))
     } else {
-      alert("Please select size!")
+      alert("Please select valid size! ( from 0 to 1000 )")
     }
   }
   const onChange = e => {
@@ -111,7 +117,7 @@ export default function CustomizedInputs() {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style = {{textAlign:"center"}}>
         <Grid item xs={12}>
           {
             arr &&
@@ -134,15 +140,16 @@ export default function CustomizedInputs() {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <form noValidate autoComplete="off">
-              <TextField
+              <TextField 
                 id="standard-number"
                 label="Size"
                 type="number"
+                
                 className={classes.textField}
                 InputLabelProps={{
                   shrink: true,
                 }}
-                InputProps={{ inputProps: { min: 0 } }}
+                InputProps={{ inputProps: { min: 0, max: 1000 } }}
                 margin="normal"
                 onChange={onChange}
               />
@@ -156,7 +163,47 @@ export default function CustomizedInputs() {
           </Paper>
         </Grid>
       </Grid>
+      <Grid item xs={12} style = {{height:"30%"}}>
+        <ExpansionPanel style={{width:"30%", marginLeft: 20, marginTop: 20}}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            
+            <Typography className={classes.heading}>Pseudocode</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>
+              <b>quickSort(arr[], low, high):</b>
+                <p>{"\u00a0 \u00a0 if (low < high):"}</p>
+                <p>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
+                <p>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
+                <p>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
+            </Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </Grid> 
       <Grid container>
+
+        <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode} id="example-code-btn">
+          Example code
+        </Button>
+        <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={openModalExampleCode}
+            onClose={handleCloseModalExampleCode}
+          >
+            <div>
+              <h2 id="simple-modal-title">Text in a modal</h2>
+              <p id="simple-modal-description">
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </p>
+            </div>
+          </Modal>
+       
+
       <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode} id="example-code-btn">
         Example code
       </Button>
@@ -231,6 +278,7 @@ export default function CustomizedInputs() {
           </div>
         </Modal>
       </Grid>
+
     </div>
   );
 }
