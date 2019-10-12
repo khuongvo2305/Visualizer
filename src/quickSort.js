@@ -1,8 +1,7 @@
-function swap(items, leftIndex, rightIndex) {
-  console.log(leftIndex,rightIndex)
-  var temp = items[leftIndex];
-  items[leftIndex] = items[rightIndex];
-  items[rightIndex] = temp;
+function swap(left, right) {
+  var temp = left;
+  left = right;
+  right = temp;
 }
 
 function partition(items, left, right) {
