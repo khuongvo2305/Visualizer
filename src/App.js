@@ -1,26 +1,81 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
-function App() {
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
+
+export default function CustomizedInputs() {
+  const classes = useStyles();
+  const [size, setSize] = useState(0);
+  const [arr, setArr] = useState()
+  const handleClick = () => {
+    if(size > 0){
+      setArr(Array.from({length: size}, () => Math.floor(Math.random() * size)))
+    } else {
+      alert("Please select size!")
+    }
+  }
+  const onChange = e => {
+    setSize(e.target.value)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          {
+            arr && arr.map(number => number + ' | ')
+          }
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <form noValidate autoComplete="off">
+              <TextField
+                id="standard-number"
+                label="Size"
+                type="number"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{ inputProps: { min: 0 } }}
+                margin="normal"
+                onChange={onChange}
+              />
+              <Button variant="contained" onClick={handleClick} color="primary" className={classes.button}>
+                Random Array
+              </Button>
+              <Button variant="contained" color="primary" className={classes.button}>
+                Sort
+              </Button>
+            </form>
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 }
-
-export default App;
