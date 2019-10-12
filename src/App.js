@@ -3,12 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { quickSort } from "./quickSort";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -38,9 +40,12 @@ export default function CustomizedInputs() {
   const classes = useStyles();
   const [size, setSize] = useState(0);
   const [arr, setArr] = useState()
+  const [resulf, setResulf] = useState()
   const handleClick = () => {
-    if(size > 0 && size <= 1000 ){
-      setArr(Array.from({length: size}, () => Math.floor(Math.random() * size)))
+    let min = -1000;
+    let max = 1000;
+    if(size > 0){
+      setArr(Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min)))))
     } else {
       alert("Please select valid size! ( from 0 to 1000 )")
     }
@@ -48,22 +53,45 @@ export default function CustomizedInputs() {
   const onChange = e => {
     setSize(e.target.value)
   }
+  const handleSort = () => {
+    if(arr && arr.length > 0){
+      let arrNumber = [...arr];
+      setResulf(quickSort(arrNumber, 0, arr.length - 1))
+    }
+  }
+
+  /**
+   * Handel modal Example Code
+   */
+  const [openModalExampleCode, setOpenModalExampleCode] = React.useState(false);
+  const handleOpenModalExampleCode = () => {
+    setOpenModalExampleCode(true);
+  };
+
+  const handleCloseModalExampleCode = () => {
+    setOpenModalExampleCode(false);
+  };
   return (
     <div className={classes.root}>
       <Grid container spacing={3} style = {{textAlign:"center"}}>
         <Grid item xs={12}>
           {
-            arr && arr.map((number, index) => {
-              return (
-                  <li className="waves-effect" style={{width:"60px",height:number+"0px",fontSize:"20px",color:"white", textAlign:"center",backgroundColor:"grey",border:"2px",borderStyle:"double",float:
-                "left", listStyleType:"none"}}
-                  key ={index}
-                  id= {number}
-                  >
-                      {number}
-                  </li>
-              );
-          })}
+            arr &&
+            <React.Fragment>
+              <label>Array:</label><br/>
+              {arr.map(number => number + ' | ')}
+            </React.Fragment>
+          }
+        </Grid>
+        <Grid item xs={12}>
+          {
+
+            resulf &&
+              <React.Fragment>
+                <label>Resulf:</label><br/>
+                {resulf.map(number => number + ' | ')}
+              </React.Fragment>
+          }
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
@@ -84,7 +112,7 @@ export default function CustomizedInputs() {
               <Button variant="contained" onClick={handleClick} color="primary" className={classes.button}>
                 Random Array
               </Button>
-              <Button variant="contained" color="primary" className={classes.button}>
+              <Button variant="contained" onClick={handleSort} color="primary" className={classes.button}>
                 Sort
               </Button>
             </form>
@@ -111,8 +139,25 @@ export default function CustomizedInputs() {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        
-      </Grid>
+      </Grid> 
+      <Grid container>
+        <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode} id="example-code-btn">
+          Example code
+        </Button>
+        <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={openModalExampleCode}
+            onClose={handleCloseModalExampleCode}
+          >
+            <div>
+              <h2 id="simple-modal-title">Text in a modal</h2>
+              <p id="simple-modal-description">
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </p>
+            </div>
+          </Modal>
+        </Grid>
     </div>
   );
 }
