@@ -17,6 +17,7 @@ function partition(arr, pivot, left, right){
   }
   swap(arr, right, partitionIndex);
   return partitionIndex;
+
 }
      
 export function quickSort(arr, left, right){
@@ -32,6 +33,7 @@ export function quickSort(arr, left, right){
    //sort left and right
    quickSort(arr, left, partitionIndex - 1);
    quickSort(arr, partitionIndex + 1, right);
+
   }
   return arr;
 }

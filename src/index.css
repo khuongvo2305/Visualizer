@@ -23,4 +23,5 @@ code {
   background-color: #fff;
   height: 80%;
   border-radius: 5px;
+  overflow: auto;;
 }
