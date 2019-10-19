@@ -203,6 +203,8 @@ export default function CustomizedInputs() {
     temparr[rightIndex] = temp;
     setArr(temparr);
   }
+
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3} style = {{textAlign:"center"}}>
@@ -357,29 +359,25 @@ export default function CustomizedInputs() {
                 </ul>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={1}>
-              C++
-              <p>{"#include <bits/stdc++.h>"}</p>
-              <p>{"using namespace\n std;"}</p>
-              <p>{"int partition (int arr[], int low, int high) { "}</p>
-              <p>{"int pivot = arr[high];"}</p>
-              <p>{""}</p>
-              <p>{""}</p>
-              <p>{""}</p>
-              <p>{""}</p>
-              <p>{""}</p>
-              <p>{""}</p>
+              <a href="/cplus.html" target="_blank">Read more...</a>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={2}>
-              C#
+               <a href="/csharp.html" target="_blank">Read more...</a>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={3}>
-              Python
+                <a href="/python.html" target="_blank">Read more...</a>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={4}>
-              Java
+                <a href="/java.html" target="_blank">Read more...</a>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={5}>
-              Practice
+              Grovyle String		LEVEL: Very-Easy	Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/grovyle-string/<br></br>
+              Specialty of a sequence	LEVEL: Very-Easy	Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/lex-finds-beauty-0d0bc1b6/<br></br>
+              Prom Night		LEVEL: Easy		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/prom-night/<br></br>
+              Card game		LEVEL: Easy		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/card-game-1-44e9f4e7/<br></br>
+              Rank List		LEVEL: Easy		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/rank-list/<br></br>
+              Noor and his pond	LEVEL: Medium		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/noor-and-his-pond-760eabe0/<br></br>
+              One-Sized Game		LEVEL: Medium		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/one-sized-game/<br></br>
               </TabPanel>
             </div>
           </div>
