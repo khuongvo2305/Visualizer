@@ -1,4 +1,5 @@
-
+import React from 'react';
+import ArrayItem from './Components/ArrayItem';
 export let ArrayAnimate =[];
 export let listIndex = [];
 export let arrback =[];
@@ -10,9 +11,16 @@ function swap(arr, i, j){
 }
 
 function partition(arr, pivot, left, right){
-   var pivotValue = arr[pivot],
+     arrback.push(arr[pivot]);
+      var pivotValue = arr[pivot],
        partitionIndex = left;
-
+      // arrback.push([...arr]);
+      // arrback[arrback.length-1] = arrback[arrback.length-1].map(e=>{
+      //   return(
+      //     <ArrayItem value ={e}></ArrayItem>
+      //   )
+      // })
+      // arrback[arrback.length-1][pivot]=(<ArrayItem ispivot={true} value ={arr[pivot]}></ArrayItem>)
    for(var i = left; i < right; i++){
     if(arr[i] < pivotValue){
       addIndex('swap');
@@ -38,10 +46,13 @@ export function quickSort(arr, left, right){
 
    addIndex(1);
    addIndex(2);
+   
   if(left < right){
 
     pivot = right;
+    //arrback.push(pivot);
     addIndex(3);
+    
     partitionIndex = partition(arr, pivot, left, right);
     
    //sort left and right

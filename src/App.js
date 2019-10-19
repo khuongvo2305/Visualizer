@@ -25,7 +25,7 @@ import './App.css';
 
 
 
-import { quickSort,listIndex,ArrayAnimate } from "./quickSort";
+import { quickSort,listIndex,ArrayAnimate,arrback } from "./quickSort";
 
 
 const useStyles = makeStyles(theme => ({
@@ -86,6 +86,7 @@ export default function CustomizedInputs() {
   const classes = useStyles();
   const [size, setSize] = useState(0);
   const [arr, setArr] = useState();
+  const [arrbackd, setArrbackd] = useState();
   const [resulf, setResulf] = useState();
   const [position, setPosition] = useState();
   const [activePos1, setActivePos1] = useState();
@@ -99,7 +100,7 @@ export default function CustomizedInputs() {
     let max = 100;
     if(size > 0 && size < 100){
       // max = size*2;
-      let temp = [];
+      let temp = Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min))));
       // for(var i = 0;i<max ; i++){
       //   var temp = Math.floor(Math.random()*max);
       //   if(random.indexOf(temp) == -1){
@@ -108,7 +109,9 @@ export default function CustomizedInputs() {
       //   else
       //    i--;
     // }
-    setArr(Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min)))))
+    
+    setArr([...temp]);
+    setArrbackd([]);
     } else {
       alert("Please select valid size! ( from 0 to 100 )")
     }
@@ -124,7 +127,7 @@ export default function CustomizedInputs() {
       let j = 0;
       let interval_obj = setInterval(()=>{
         let temp = ArrayAnimate[i]
-        
+        setArrbackd(arrback[i]);
         if(listIndex){
           if(listIndex[j] == 'swap'){
             i++;
@@ -202,6 +205,7 @@ export default function CustomizedInputs() {
     temparr[leftIndex] = temparr[rightIndex];
     temparr[rightIndex] = temp;
     setArr(temparr);
+
   }
   return (
     <div className={classes.root}>
@@ -222,6 +226,7 @@ export default function CustomizedInputs() {
                 )
                 )}
                 </ul><br/>
+                <p>Pivot:</p><p>{arrbackd}</p>
             </React.Fragment>
           }
         </Grid>

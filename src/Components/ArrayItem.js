@@ -13,7 +13,7 @@ export default class ArrayItem extends Component{
 
     render(){
         return(
-            <div className = "arrayitem" style = {{backgroundColor : this.props.isleft?"green":this.props.isright?"pink":this.props.isconst?"yellow":"white"}}>
+            <div className = "arrayitem" style = {{backgroundColor : this.props.isleft?"green":this.props.isright?"pink":this.props.ispivot?"red":"white"}}>
                 {this.props.value}
             </div>
         )
