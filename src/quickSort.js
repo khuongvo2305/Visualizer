@@ -1,28 +1,37 @@
-function swap(left, right) {
-  var temp = left;
-  left = right;
-  right = temp;
+
+function swap(arr, i, j){
+   var temp = arr[i];
+   arr[i] = arr[j];
+   arr[j] = temp;
 }
 
-function partition(items, left, right) {
-  var i = left + 1;
-  var pivot = items[Math.floor(left)];
-  for(let j = left + 1; j <= right; j++){
-    if(items[j] < pivot){
-      swap(items[i], items[j]);
-      i+=1
+function partition(arr, pivot, left, right){
+   var pivotValue = arr[pivot],
+       partitionIndex = left;
+
+   for(var i = left; i < right; i++){
+    if(arr[i] < pivotValue){
+      swap(arr, i, partitionIndex);
+      partitionIndex++;
     }
   }
-  swap(items[left], items[i - 1]);
-  return i - 1;
+  swap(arr, right, partitionIndex);
+  return partitionIndex;
 }
+     
+export function quickSort(arr, left, right){
+   var len = arr.length, 
+   pivot,
+   partitionIndex;
 
-export function quickSort(items, left, right) {
-  var index;
-  if (left < right) {
-    index = partition(items, left, right);
-    quickSort(items, left, index - 1);
-    quickSort(items, index + 1, right);
+
+  if(left < right){
+    pivot = right;
+    partitionIndex = partition(arr, pivot, left, right);
+    
+   //sort left and right
+   quickSort(arr, left, partitionIndex - 1);
+   quickSort(arr, partitionIndex + 1, right);
   }
-  return items;
+  return arr;
 }
