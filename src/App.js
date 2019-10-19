@@ -18,10 +18,15 @@ import Tab from '@material-ui/core/Tab';
 import { motion } from "framer-motion";
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
+
 import ArrayItem from './Components/ArrayItem';
-import { quickSort } from "./quickSort";
+
 import './App.css';
-import {ArrayAnimate} from "./quickSort.js" ;
+
+
+
+import { quickSort,listIndex,ArrayAnimate } from "./quickSort";
+
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -80,14 +85,30 @@ function a11yProps(index) {
 export default function CustomizedInputs() {
   const classes = useStyles();
   const [size, setSize] = useState(0);
-  const [arr, setArr] = useState()
-  const [resulf, setResulf] = useState()
+  const [arr, setArr] = useState();
+  const [resulf, setResulf] = useState();
+  const [position, setPosition] = useState();
+  const [activePos1, setActivePos1] = useState();
+  const [activePos2, setActivePos2] = useState();
+  const [activePos3, setActivePos3] = useState();
+  const [activePos4, setActivePos4] = useState();
+  const [activePos5, setActivePos5] = useState();
+  const [activePos6, setActivePos6] = useState();
   const handleClick = () => {
     let min = 1;
     let max = 100;
     if(size > 0 && size < 100){
       // max = size*2;
-      setArr(Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min)))))
+      let temp = [];
+      // for(var i = 0;i<max ; i++){
+      //   var temp = Math.floor(Math.random()*max);
+      //   if(random.indexOf(temp) == -1){
+      //       random.push(temp);
+      //   }
+      //   else
+      //    i--;
+    // }
+    setArr(Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min)))))
     } else {
       alert("Please select valid size! ( from 0 to 100 )")
     }
@@ -99,21 +120,62 @@ export default function CustomizedInputs() {
     if(arr && arr.length > 0){
       let arrNumber = [...arr];
       setResulf(quickSort(arrNumber, 0, arr.length - 1))
-    }
-    let i = 0;
-    let interval_obj = setInterval(()=>{
-      let temp = ArrayAnimate[i]
-      setArr([...temp]);
-      i++;
-      temp=[];
-      if (i>=ArrayAnimate.length){
-        clearInterval(interval_obj);
+      let i = 0;
+      let j = 0;
+      let interval_obj = setInterval(()=>{
+        let temp = ArrayAnimate[i]
+        
+        if(listIndex){
+          if(listIndex[j] == 'swap'){
+            i++;
+            setArr([...temp]);
+          }else{
+            setIndexPostion(listIndex[j]);
+            if(j == listIndex.length -1){
+              setIndexPostion(6);
+            }
+          }
+        }
+        j++;
+        temp=[];
+        if(i>=ArrayAnimate.length){i--;}
+        if (j>=listIndex.length){
+          clearInterval(interval_obj);
+        } 
+      },1000);
     } 
-  },1000);
+     
+
+  }
+
+  const setIndexPostion = (element) => {
+    console.log(element);
+    setActivePos1("");
+    setActivePos2("");
+    setActivePos3("");
+    setActivePos4("");
+    setActivePos5("");
+    setActivePos6("");
+    if(element == 1){
+      setActivePos1("active");
+    }else if(element == 2){
+      setActivePos2("active");
+    }else if(element == 3){
+      setActivePos3("active");
+    }else if(element == 4){
+      setActivePos4("active");
+    }else if(element == 5){
+      setActivePos5("active");
+    }else if(element == 6){
+      setActivePos6("active");
+    }
+   
   
   }
+
   console.log(ArrayAnimate);
   useEffect(()=>{;},[arr]);
+
   /**
    * Handel modal Example Code
    */
@@ -211,11 +273,12 @@ export default function CustomizedInputs() {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div>
-              <b>quickSort(arr[], low, high):</b>
-                <p>{"\u00a0 \u00a0 if (low < high):"}</p>
-                <p>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
-                <p>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
-                <p>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
+              <b className={activePos1 + " positionPesudo" }>quickSort(arr[], low, high):</b>
+                <p className={activePos2 + " positionPesudo" }>{"\u00a0 \u00a0 if (low < high):"}</p>
+                <p className={activePos3 + " positionPesudo" }>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
+                <p className={activePos4 + " positionPesudo" }>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
+                <p className={activePos5 + " positionPesudo" }>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
+              <b className={activePos6 + " positionPesudo" }>end</b>
             </div>
           </ExpansionPanelDetails>
         </ExpansionPanel>
