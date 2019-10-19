@@ -98,7 +98,7 @@ export default function CustomizedInputs() {
   const handleClick = () => {
     let min = 1;
     let max = 100;
-    if(size > 0 && size < 100){
+    if(size > 0 && size < 20){
       // max = size*2;
       let temp = Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min))));
       // for(var i = 0;i<max ; i++){
@@ -113,7 +113,7 @@ export default function CustomizedInputs() {
     setArr([...temp]);
     setArrbackd([]);
     } else {
-      alert("Please select valid size! ( from 0 to 100 )")
+      alert("Please select valid size! ( from 0 to 20 )")
     }
   }
   const onChange = e => {
@@ -207,9 +207,40 @@ export default function CustomizedInputs() {
     setArr(temparr);
 
   }
+
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3} style = {{textAlign:"center"}}>
+      <Grid item xs={12} className="title">
+        QUICKSORT
+      </Grid>
+      <Grid item xs={4}>
+      <Grid item xs={12}>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+
+            <Typography className={classes.heading}>Pseudocode</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <div style={{ "textAlign": "justify"}}>
+              <b className={activePos1 + " positionPesudo" }>quickSort(arr[], low, high):</b>
+                <p className={activePos2 + " positionPesudo" }>{"\u00a0 \u00a0 if (low < high):"}</p>
+                <p className={activePos3 + " positionPesudo" }>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
+                <p className={activePos4 + " positionPesudo" }>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
+                <p className={activePos5 + " positionPesudo" }>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
+              <b className={activePos6 + " positionPesudo" }>end</b>
+            </div>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </Grid>
+      </Grid>
+      <Grid item xs={8}>
+        
         <Grid item xs={12}>
           {
             arr &&
@@ -222,7 +253,8 @@ export default function CustomizedInputs() {
                     className = "liitem"
                     key ={e}
                     layoutTransition = {spring}
-                  ><ArrayItem value = {e}></ArrayItem></motion.li>
+                    style = {{height: e*3+"px", border: "1px solid #ddd", "minHeight": "36px","backgroundColor":"#ddd","marginRight":"5px"}}
+                  ><ArrayItem value = {e} ></ArrayItem></motion.li>
                 )
                 )}
                 </ul><br/>
@@ -266,28 +298,9 @@ export default function CustomizedInputs() {
           </Paper>
         </Grid>
       </Grid>
-      <Grid item xs={12} style = {{height:"30%"}}>
-        <ExpansionPanel style={{width:"50%", marginLeft: 20, marginTop: 20}}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-
-            <Typography className={classes.heading}>Pseudocode</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <div>
-              <b className={activePos1 + " positionPesudo" }>quickSort(arr[], low, high):</b>
-                <p className={activePos2 + " positionPesudo" }>{"\u00a0 \u00a0 if (low < high):"}</p>
-                <p className={activePos3 + " positionPesudo" }>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
-                <p className={activePos4 + " positionPesudo" }>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
-                <p className={activePos5 + " positionPesudo" }>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
-              <b className={activePos6 + " positionPesudo" }>end</b>
-            </div>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+        
       </Grid>
+      
       <Grid container>
 
         <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode} id="example-code-btn">
@@ -361,29 +374,25 @@ export default function CustomizedInputs() {
                 </ul>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={1}>
-              C++
-              <p>{"#include <bits/stdc++.h>"}</p>
-              <p>{"using namespace\n std;"}</p>
-              <p>{"int partition (int arr[], int low, int high) { "}</p>
-              <p>{"int pivot = arr[high];"}</p>
-              <p>{""}</p>
-              <p>{""}</p>
-              <p>{""}</p>
-              <p>{""}</p>
-              <p>{""}</p>
-              <p>{""}</p>
+              <a href="/cplus.html" target="_blank">Read more...</a>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={2}>
-              C#
+               <a href="/csharp.html" target="_blank">Read more...</a>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={3}>
-              Python
+                <a href="/python.html" target="_blank">Read more...</a>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={4}>
-              Java
+                <a href="/java.html" target="_blank">Read more...</a>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={5}>
-              Practice
+              Grovyle String		LEVEL: Very-Easy	Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/grovyle-string/<br></br>
+              Specialty of a sequence	LEVEL: Very-Easy	Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/lex-finds-beauty-0d0bc1b6/<br></br>
+              Prom Night		LEVEL: Easy		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/prom-night/<br></br>
+              Card game		LEVEL: Easy		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/card-game-1-44e9f4e7/<br></br>
+              Rank List		LEVEL: Easy		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/rank-list/<br></br>
+              Noor and his pond	LEVEL: Medium		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/noor-and-his-pond-760eabe0/<br></br>
+              One-Sized Game		LEVEL: Medium		Link: https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/practice-problems/algorithm/one-sized-game/<br></br>
               </TabPanel>
             </div>
           </div>
