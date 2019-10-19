@@ -1,4 +1,5 @@
 
+export let ArrayAnimate =[]
 function swap(arr, i, j){
    var temp = arr[i];
    arr[i] = arr[j];
@@ -12,10 +13,12 @@ function partition(arr, pivot, left, right){
    for(var i = left; i < right; i++){
     if(arr[i] < pivotValue){
       swap(arr, i, partitionIndex);
+      ArrayAnimate.push([...arr]);
       partitionIndex++;
     }
   }
   swap(arr, right, partitionIndex);
+  ArrayAnimate.push([...arr]);
   return partitionIndex;
 
 }
@@ -35,5 +38,7 @@ export function quickSort(arr, left, right){
    quickSort(arr, partitionIndex + 1, right);
 
   }
+  console.log(ArrayAnimate);
+ 
   return arr;
 }

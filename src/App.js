@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { makeStyles  } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -15,11 +15,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
+import { motion } from "framer-motion";
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
-
+import ArrayItem from './Components/ArrayItem';
 import { quickSort } from "./quickSort";
+import './App.css';
+import {ArrayAnimate} from "./quickSort.js" ;
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -74,18 +76,20 @@ function a11yProps(index) {
 }
 
 
+
 export default function CustomizedInputs() {
   const classes = useStyles();
   const [size, setSize] = useState(0);
   const [arr, setArr] = useState()
   const [resulf, setResulf] = useState()
   const handleClick = () => {
-    let min = -1000;
-    let max = 1000;
-    if(size > 0){
+    let min = 1;
+    let max = 100;
+    if(size > 0 && size < 100){
+      // max = size*2;
       setArr(Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min)))))
     } else {
-      alert("Please select valid size! ( from 0 to 1000 )")
+      alert("Please select valid size! ( from 0 to 100 )")
     }
   }
   const onChange = e => {
@@ -96,8 +100,20 @@ export default function CustomizedInputs() {
       let arrNumber = [...arr];
       setResulf(quickSort(arrNumber, 0, arr.length - 1))
     }
+    let i = 0;
+    let interval_obj = setInterval(()=>{
+      let temp = ArrayAnimate[i]
+      setArr([...temp]);
+      i++;
+      temp=[];
+      if (i>=ArrayAnimate.length){
+        clearInterval(interval_obj);
+    } 
+  },1000);
+  
   }
-
+  console.log(ArrayAnimate);
+  useEffect(()=>{;},[arr]);
   /**
    * Handel modal Example Code
    */
@@ -105,7 +121,11 @@ export default function CustomizedInputs() {
   const handleOpenModalExampleCode = () => {
     setOpenModalExampleCode(true);
   };
-
+  const spring = {
+    type: "spring",
+    damping: 20,
+    stiffness: 300
+  };
   const handleCloseModalExampleCode = () => {
     setOpenModalExampleCode(false);
   };
@@ -114,7 +134,13 @@ export default function CustomizedInputs() {
   const handleChangeTabExampleCode = (event, newValue) => {
     setValueTabExampleCode(newValue);
   };
-
+  function swap(items, leftIndex, rightIndex) {
+    let temparr = [...items]
+    let temp = temparr[leftIndex];
+    temparr[leftIndex] = temparr[rightIndex];
+    temparr[rightIndex] = temp;
+    setArr(temparr);
+  }
   return (
     <div className={classes.root}>
       <Grid container spacing={3} style = {{textAlign:"center"}}>
@@ -123,7 +149,17 @@ export default function CustomizedInputs() {
             arr &&
             <React.Fragment>
               <label>Array:</label><br/>
-              {arr.map(number => number + ' | ')}
+              <ul style = {{listStyleType:"none"}}>
+              {arr.map((e,index)=>
+                (
+                  <motion.li
+                    className = "liitem"
+                    key ={e}
+                    layoutTransition = {spring}
+                  ><ArrayItem value = {e}></ArrayItem></motion.li>
+                )
+                )}
+                </ul><br/>
             </React.Fragment>
           }
         </Grid>
@@ -218,10 +254,10 @@ export default function CustomizedInputs() {
               <AppBar position="static">
                 <Tabs value={valueTabExampleCode} onChange={handleChangeTabExampleCode} aria-label="simple tabs example">
                   <Tab label="Quick Sort" {...a11yProps(0)} />
-                  <Tab label="Example Code C++" {...a11yProps(1)} />
-                  <Tab label="Example Code C#" {...a11yProps(2)} />
-                  <Tab label="Example Code Python" {...a11yProps(3)} />
-                  <Tab label="Example Code Java" {...a11yProps(4)} />
+                  <Tab label="C++" {...a11yProps(1)} />
+                  <Tab label="C#" {...a11yProps(2)} />
+                  <Tab label="Python" {...a11yProps(3)} />
+                  <Tab label="Java" {...a11yProps(4)} />
                   <Tab label="Practice" {...a11yProps(5)} />
                 </Tabs>
               </AppBar>
@@ -257,16 +293,26 @@ export default function CustomizedInputs() {
                 </ul>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={1}>
-              Example Code C++
+              C++
+              <p>{"#include <bits/stdc++.h>"}</p>
+              <p>{"using namespace\n std;"}</p>
+              <p>{"int partition (int arr[], int low, int high) { "}</p>
+              <p>{"int pivot = arr[high];"}</p>
+              <p>{""}</p>
+              <p>{""}</p>
+              <p>{""}</p>
+              <p>{""}</p>
+              <p>{""}</p>
+              <p>{""}</p>
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={2}>
-              Example Code C#
+              C#
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={3}>
-              Example Code Python
+              Python
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={4}>
-              Example Code Java
+              Java
               </TabPanel>
               <TabPanel value={valueTabExampleCode} index={5}>
               Practice
