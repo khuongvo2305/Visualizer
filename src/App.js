@@ -19,7 +19,7 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
 
-import { quickSort } from "./quickSort";
+import { quickSort,exportListIndex } from "./quickSort";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -79,6 +79,7 @@ export default function CustomizedInputs() {
   const [size, setSize] = useState(0);
   const [arr, setArr] = useState()
   const [resulf, setResulf] = useState()
+  const [position, setPosition] = useState()
   const handleClick = () => {
     let min = -1000;
     let max = 1000;
@@ -95,9 +96,52 @@ export default function CustomizedInputs() {
     if(arr && arr.length > 0){
       let arrNumber = [...arr];
       setResulf(quickSort(arrNumber, 0, arr.length - 1))
+      setPosition(exportListIndex());
+      if(position){
+        changeIndexPosition(position);
+      }
+    } 
+
+  }
+  const [activePos1, setActivePos1] = useState()
+  const [activePos2, setActivePos2] = useState()
+  const [activePos3, setActivePos3] = useState()
+  const [activePos4, setActivePos4] = useState()
+  const [activePos5, setActivePos5] = useState()
+  const setIndexPostion = (element) => {
+    console.log(element);
+    if(element == 1){
+      setActivePos1("active");
+      setActivePos2("");
+      setActivePos3("");
+      setActivePos4("");
+      setActivePos5("");
+    }else if(element == 2){
+      setActivePos1("");
+      setActivePos2("active");
+      setActivePos3("");
+      setActivePos4("");
+      setActivePos5("");
+    }else if(element == 3){
+      setActivePos1("");
+      setActivePos2("");
+      setActivePos3("active");
+      setActivePos4("");
+      setActivePos5("");
+    }else if(element == 4){
+      setActivePos1("");
+      setActivePos2("");
+      setActivePos3("");
+      setActivePos4("active");
+      setActivePos5("");
+    }else if(element == 5){
+      setActivePos1("");
+      setActivePos2("");
+      setActivePos3("");
+      setActivePos4("");
+      setActivePos5("active");
     }
   }
-
   /**
    * Handel modal Example Code
    */
@@ -175,11 +219,11 @@ export default function CustomizedInputs() {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <div>
-              <b>quickSort(arr[], low, high):</b>
-                <p>{"\u00a0 \u00a0 if (low < high):"}</p>
-                <p>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
-                <p>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
-                <p>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
+              <b className={activePos1 + " positionPesudo" }>quickSort(arr[], low, high):</b>
+                <p className={activePos2 + " positionPesudo" }>{"\u00a0 \u00a0 if (low < high):"}</p>
+                <p className={activePos3 + " positionPesudo" }>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
+                <p className={activePos4 + " positionPesudo" }>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
+                <p className={activePos5 + " positionPesudo" }>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
             </div>
           </ExpansionPanelDetails>
         </ExpansionPanel>

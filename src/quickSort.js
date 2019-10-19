@@ -19,19 +19,30 @@ function partition(arr, pivot, left, right){
   return partitionIndex;
 
 }
-     
+var listIndex = new Array();
+function addIndex(index){
+  listIndex.push(index);
+}
+export function exportListIndex(){
+  return listIndex;
+} 
 export function quickSort(arr, left, right){
    var len = arr.length, 
    pivot,
    partitionIndex;
 
-
+   addIndex(1);
+   addIndex(2);
   if(left < right){
+
     pivot = right;
+    addIndex(3);
     partitionIndex = partition(arr, pivot, left, right);
     
    //sort left and right
+   addIndex(4);
    quickSort(arr, left, partitionIndex - 1);
+   addIndex(5);
    quickSort(arr, partitionIndex + 1, right);
 
   }
