@@ -1,0 +1,25 @@
+<p><strong><span style="color: #ff0000;">Python</span></strong></p>
+<p><span style="color: #0000ff;">def</span> <span style="color: #993366;">partition</span>(arr, low, high):</p>
+<p>&nbsp;&nbsp;&nbsp; i = low - <span style="color: #ff0000;">1</span></p>
+<p>&nbsp;&nbsp;&nbsp; pivot = arr[high]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color: #0000ff;">for</span> j <span style="color: #0000ff;">in</span> range(low , high):</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0000ff;">if</span> arr[j] <span style="color: #0000ff;">&lt;</span> pivot:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i += <span style="color: #ff0000;">1</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arr[i], arr[j] = arr[j], arr[i]</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; arr[i + <span style="color: #ff0000;">1</span>], arr[high] = arr[high], arr[i + <span style="color: #ff0000;">1</span>]</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color: #0000ff;">return</span> i + <span style="color: #ff0000;">1</span></p>
+<p>&nbsp;</p>
+<p><span style="color: #0000ff;">def</span> <span style="color: #993366;">quickSort</span>(arr, low, high):</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color: #0000ff;">if</span> low <span style="color: #0000ff;">&lt;</span> high:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pi = partition(arr, low, high)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quickSort(arr, low, pi - <span style="color: #ff0000;">1</span>)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; quickSort(arr, pi + <span style="color: #ff0000;">1</span>, high)</p>
+<p>&nbsp;</p>
+<p>arr = [<span style="color: #ff0000;">10</span>, <span style="color: #ff0000;">7</span>, <span style="color: #ff0000;">8</span>, <span style="color: #ff0000;">9</span>, <span style="color: #ff0000;">1</span>, <span style="color: #ff0000;">5</span>]</p>
+<p>n = len(arr)</p>
+<p>quickSort(arr, 0, n - <span style="color: #ff0000;">1</span>)</p>
+<p><span style="color: #0000ff;">print</span> ("Sorted array is:")</p>
+<p><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(n):</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color: #0000ff;">print</span>(arr[i], end = " ")</p>
