@@ -208,6 +208,35 @@ export default function CustomizedInputs() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3} style = {{textAlign:"center"}}>
+      <Grid item xs={12} className="title">
+        QUICKSORT
+      </Grid>
+      <Grid item xs={4}>
+      <Grid item xs={12}>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+
+            <Typography className={classes.heading}>Pseudocode</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <div style={{ "textAlign": "justify"}}>
+              <b className={activePos1 + " positionPesudo" }>quickSort(arr[], low, high):</b>
+                <p className={activePos2 + " positionPesudo" }>{"\u00a0 \u00a0 if (low < high):"}</p>
+                <p className={activePos3 + " positionPesudo" }>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
+                <p className={activePos4 + " positionPesudo" }>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
+                <p className={activePos5 + " positionPesudo" }>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
+              <b className={activePos6 + " positionPesudo" }>end</b>
+            </div>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </Grid>
+      </Grid>
+      <Grid item xs={8}>
+        
         <Grid item xs={12}>
           {
             arr &&
@@ -220,7 +249,7 @@ export default function CustomizedInputs() {
                     className = "liitem"
                     key ={e}
                     layoutTransition = {spring}
-                    style = {{height: e*3+"px", border: "1px solid #ddd", "min-height": "36px","background-color":"#ddd","margin-right":"5px"}}
+                    style = {{height: e*3+"px", border: "1px solid #ddd", "minHeight": "36px","backgroundColor":"#ddd","marginRight":"5px"}}
                   ><ArrayItem value = {e} ></ArrayItem></motion.li>
                 )
                 )}
@@ -264,28 +293,9 @@ export default function CustomizedInputs() {
           </Paper>
         </Grid>
       </Grid>
-      <Grid item xs={12} style = {{height:"30%"}}>
-        <ExpansionPanel style={{width:"50%", marginLeft: 20, marginTop: 20}}>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-
-            <Typography className={classes.heading}>Pseudocode</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <div>
-              <b className={activePos1 + " positionPesudo" }>quickSort(arr[], low, high):</b>
-                <p className={activePos2 + " positionPesudo" }>{"\u00a0 \u00a0 if (low < high):"}</p>
-                <p className={activePos3 + " positionPesudo" }>{"\u00a0 \u00a0 \u00a0 pivot = partition(arr, low, high)"}</p>
-                <p className={activePos4 + " positionPesudo" }>{"         \u00a0 \u00a0 \u00a0 quickSort(arr, low, pivot - 1)"}</p>
-                <p className={activePos5 + " positionPesudo" }>{"        \u00a0 \u00a0 \u00a0 quickSort(arr, pivot + 1, high)"}</p>
-              <b className={activePos6 + " positionPesudo" }>end</b>
-            </div>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+        
       </Grid>
+      
       <Grid container>
 
         <Button variant="contained" color="primary" className={classes.button} onClick={handleOpenModalExampleCode} id="example-code-btn">

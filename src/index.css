@@ -28,3 +28,10 @@ code {
 .active.positionPesudo {
   background-color: #dddd;
 }
+.title {
+  font-size: 21px;
+  font-weight: 600;
+  background-color: #3f51b5;
+  color: #fff;
+  margin-top: 5px !important;
+}
