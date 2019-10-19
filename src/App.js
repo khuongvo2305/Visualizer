@@ -97,7 +97,7 @@ export default function CustomizedInputs() {
   const handleClick = () => {
     let min = 1;
     let max = 100;
-    if(size > 0 && size < 100){
+    if(size > 0 && size < 20){
       // max = size*2;
       let temp = [];
       // for(var i = 0;i<max ; i++){
@@ -110,7 +110,7 @@ export default function CustomizedInputs() {
     // }
     setArr(Array.from({length: size}, () => Math.floor((min + Math.random()*(max - min)))))
     } else {
-      alert("Please select valid size! ( from 0 to 100 )")
+      alert("Please select valid size! ( from 0 to 20 )")
     }
   }
   const onChange = e => {
@@ -218,7 +218,8 @@ export default function CustomizedInputs() {
                     className = "liitem"
                     key ={e}
                     layoutTransition = {spring}
-                  ><ArrayItem value = {e}></ArrayItem></motion.li>
+                    style = {{height: e*3+"px", border: "1px solid #ddd", "min-height": "36px","background-color":"#ddd","margin-right":"5px"}}
+                  ><ArrayItem value = {e} ></ArrayItem></motion.li>
                 )
                 )}
                 </ul><br/>
