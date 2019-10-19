@@ -87,7 +87,7 @@ export default function CustomizedInputs() {
   const [size, setSize] = useState(0);
   const [arr, setArr] = useState();
   const [arrbackd, setArrbackd] = useState();
-  const [resulf, setResulf] = useState();
+  const [result, setresult] = useState();
   const [position, setPosition] = useState();
   const [activePos1, setActivePos1] = useState();
   const [activePos2, setActivePos2] = useState();
@@ -122,7 +122,7 @@ export default function CustomizedInputs() {
   const handleSort = () => {
     if(arr && arr.length > 0){
       let arrNumber = [...arr];
-      setResulf(quickSort(arrNumber, 0, arr.length - 1))
+      setresult(quickSort(arrNumber, 0, arr.length - 1))
       let i = 0;
       let j = 0;
       let interval_obj = setInterval(()=>{
@@ -265,10 +265,10 @@ export default function CustomizedInputs() {
         <Grid item xs={12}>
           {
 
-            resulf &&
+            result &&
               <React.Fragment>
-                <label>Resulf:</label><br/>
-                {resulf.map(number => number + ' | ')}
+                <label>result:</label><br/>
+                {result.map(number => number + ' | ')}
               </React.Fragment>
           }
         </Grid>
